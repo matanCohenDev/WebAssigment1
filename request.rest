@@ -1,12 +1,5 @@
 ###
 
-GET http://localhost:3000/posts/posts
-
-###
-
-GET http://localhost:3000/posts/post/0
-###
-
 POST http://localhost:3000/posts/create
 Content-Type: application/json
 
@@ -16,6 +9,18 @@ Content-Type: application/json
     "content": "hello",
     "sender": "test"
 }
+
+###
+
+GET http://localhost:3000/posts/posts
+
+###
+
+GET http://localhost:3000/posts/post/0
+
+###
+
+GET http://localhost:3000/posts/sender/test
 
 ###
 
@@ -29,7 +34,16 @@ Content-Type: application/json
 }
 
 ###
+
+GET http://localhost:3000/posts/sender/test
+
+
+###
 DELETE http://localhost:3000/posts/delete/0
+
+###
+
+GET http://localhost:3000/posts/posts
 
 
 

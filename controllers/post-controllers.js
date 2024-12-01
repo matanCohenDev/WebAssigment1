@@ -37,7 +37,6 @@ const updatePost = async (req, res) => {
     }
 };
 
-
 //delete a post
 const deletePost = async (req, res) => {
     try {
@@ -74,4 +73,17 @@ const getPostById = async (req, res) => {
     }
 };
 
-module.exports = {createPost, updatePost , deletePost, getPosts, getPostById};
+//Get a post by sender
+const getPostBySender = async (req, res) => {
+    try {
+        const post = await Post.find({sender: req.params.sender});
+        if(!post) {
+            return res.status(404).json({error: 'Post not found'});
+        }
+        res.status(200).json(post);
+    } catch (err) {
+        res.status(400).json({error: err.message});
+    }
+};
+
+module.exports = {createPost, updatePost , deletePost, getPosts, getPostById, getPostBySender};
