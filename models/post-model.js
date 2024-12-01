@@ -1,5 +1,9 @@
 const mongoose = require('mongoose');
 const postSchema = new mongoose.Schema({
+    _id:{
+        type: Number,
+        default: 0
+    },
     title: { 
         type: String, 
         required: true 

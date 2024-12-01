@@ -4,14 +4,32 @@ GET http://localhost:3000/posts/posts
 
 ###
 
+GET http://localhost:3000/posts/post/0
+###
+
 POST http://localhost:3000/posts/create
 Content-Type: application/json
 
 {
+    "_id": 0,
     "title": "hi",
     "content": "hello",
     "sender": "test"
 }
+
+###
+
+PUT  http://localhost:3000/posts/update/0
+Content-Type: application/json
+
+{
+    "title": "men",
+    "content": "whats up",
+    "sender": "testing"
+}
+
+###
+DELETE http://localhost:3000/posts/delete/0
 
 
 
