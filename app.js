@@ -10,6 +10,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.json());
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URL).then(() => {
@@ -17,6 +18,8 @@ mongoose.connect(process.env.MONGO_URL).then(() => {
 }).catch((err) => {
     console.log('Failed to connect to MongoDB', err);
 });
+
+
 app.use('/posts', require('./routes/post-routes'));
 // app connection
 app.listen(process.env.PORT, () => {

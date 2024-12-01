@@ -1,0 +1,17 @@
+###
+
+GET http://localhost:3000/posts/posts
+
+###
+
+POST http://localhost:3000/posts/create
+Content-Type: application/json
+
+{
+    "title": "hi",
+    "content": "hello",
+    "sender": "test"
+}
+
+
+
