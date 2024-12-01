@@ -4,11 +4,17 @@ const Post = require('../models/post-model');
 // Create a new post
 const createPost = async (req, res) => {
     try {
-        const post = new Post(req.body);
-        await post.create();
-        res.status(201).json("post created");
-    } catch (err) {
-        res.status(400).json({ error: err.message });
+        const { title, content, sender } = req.body;
+
+        if (!title || !content || !sender) {
+            return res.status(400).json({ error: 'All fields are required' });
+        }
+
+        const newPost = await Post.create({ title, content, sender });
+        res.status(201).json(newPost);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Failed to create the post' });
     }
 };
 // Update a post
