@@ -21,6 +21,7 @@ mongoose.connect(process.env.MONGO_URL).then(() => {
 
 
 app.use('/posts', require('./routes/post-routes'));
+app.use('/comments', require('./routes/comments-routes'));
 // app connection
 app.listen(process.env.PORT, () => {
     console.log(`Server is running on port ${process.env.PORT}`);
