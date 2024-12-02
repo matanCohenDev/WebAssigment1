@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 const commentSchema = new mongoose.Schema({
     _id:{
         type: Number,
-        default: 0
     },
     postId:{
         type: Number,
@@ -19,9 +18,9 @@ const commentSchema = new mongoose.Schema({
     }, 
 
     createdAt: {
-         type: Date,
-          default: Date.now 
-        },
+        type: Date,
+        default: Date.now 
+    },
 
 });
 module.exports = mongoose.model('Comment', commentSchema);

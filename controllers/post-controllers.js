@@ -1,16 +1,17 @@
 const express = require('express');
 const Post = require('../models/post-model');
+const Comment = require('../models/comments-model');
 
 // Create a new post
 const createPost = async (req, res) => {
     try {
-        const { title, content, sender } = req.body;
+        const {_id , title, content, sender } = req.body;
 
         if (!title || !content || !sender) {
             return res.status(400).json({ error: 'All fields are required' });
         }
 
-        const newPost = await Post.create({ title, content, sender });
+        const newPost = await Post.create({_id , title, content, sender });
         res.status(201).json(newPost);
     } catch (error) {
         console.error(error);
@@ -86,4 +87,17 @@ const getPostBySender = async (req, res) => {
     }
 };
 
-module.exports = {createPost, updatePost , deletePost, getPosts, getPostById, getPostBySender};
+const getAllPostComments = async (req, res) => {
+    try {
+        const post = await Post.findById(req.params.id);
+        const comments = await Comment.find({postId: post._id});
+        if(!post) {
+            return res.status(404).json({error: 'Post not found'});
+        }
+        res.status(200).json(comments);
+    } catch (err) {
+        res.status(400).json({error: err.message});
+    }
+}
+
+module.exports = {createPost, updatePost , deletePost, getPosts, getPostById, getPostBySender , getAllPostComments};
